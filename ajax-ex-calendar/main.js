@@ -27,19 +27,22 @@ $(document).ready(function() {
     //appendo ogni volta nelle li
     $('.mese').append('<li>'+ giorno + '</li>')
   }
-  //quando clicco il bottone prev
-    $('.prev').click(function() {
-    //mese scende di un grado
-      contatore_mese--;
+    //quando clicco il bottone prev
+  $('.prev').click(function() {
+  //mese scende di un grado
+    contatore_mese--;
+    if(contatore_mese <= 12){
       mostra_mese()
-
-    })
-    //quando clicco il bottone next
-    $('.next').click(function() {
-      //mese sale di un grado
-      contatore_mese++;
+    }
+  })
+  //quando clicco il bottone next
+  $('.next').click(function() {
+    //mese sale di un grado
+    contatore_mese++;
+    if(contatore_mese >= 1){
       mostra_mese();
-    })
+    }
+  })
 
     //funzione per cambiare mese e mostrarlo
     function mostra_mese(){
@@ -66,5 +69,4 @@ $(document).ready(function() {
         $('.mese').append('<li>'+ giorno + '</li>')
       }
     }
-
 })
