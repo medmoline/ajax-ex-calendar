@@ -83,10 +83,9 @@ function chiamata_ajax(){
     },
     'success': function(data){
       $('.mese li').each(function() {
-        console.log(data.response.length)
         for(var i=0; i<data.response.length; i++){
           if(data.response[i].date == $(this).data('li')){
-            $(this).append( '<p>'+ data.response[0].name +'</p>' ).addClass('red')
+            $(this).append( '<p>'+ data.response[i].name +'</p>' ).addClass('red')
           }
         }
       })
