@@ -14,59 +14,67 @@ $(document).ready(function() {
   var giorni = moment_date.daysInMonth();
   console.log(giorni);
   //variabile per mese
-  var mese = moment_date.format('MMMM');
+  var mese_lettere = moment_date.format('MMMM');
+  var mese_numero = moment_date.format('MM');
   //variabile per anno
   var anno = moment_date.format('YYYY');
   //nel testo inizialmente vuoto inserisco il mese e l'anno
-  $('.mese_corrente').text(mese + ' ' + anno);
+  $('.mese_corrente').text(mese_lettere + ' ' + anno);
 
   //ciclo da 1 fino alla lunghezza del mese
   for(var i = 1;i <= giorni; i++){
+    var giorno = i + ' ' + mese_lettere;
     //giorno uguale al numero i che cicla di volta in volta e
-    var giorno = i + ' ' + mese;
+    var source   = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+    var context = {
+      'title': giorno,
+      'body': anno + '-' + mese_numero +'-'+i
+    };
+    var html    = template(context);
     //appendo ogni volta nelle li
-    $('.mese').append('<li>'+ giorno + '</li>')
+    $('.mese').append(html);
   }
-    //quando clicco il bottone prev
-  $('.prev').click(function() {
-  //mese scende di un grado
-    contatore_mese--;
-    if(contatore_mese <= 12){
-      mostra_mese()
-    }
-  })
-  //quando clicco il bottone next
-  $('.next').click(function() {
-    //mese sale di un grado
-    contatore_mese++;
-    if(contatore_mese >= 1){
-      mostra_mese();
-    }
-  })
-
-    //funzione per cambiare mese e mostrarlo
-    function mostra_mese(){
-      //resetto il valore del testo contennuto in mese
-      $('.mese').text('');
-      //ripeti l'operazione di prima
-       data ='2018-' + contatore_mese + '-1';
-      var moment_date = moment(data);
-      console.log(data);
-      //giorni in un mese
-      var giorni = moment_date.daysInMonth();
-      console.log(giorni);
-      //variabile per mese
-      var mese = moment_date.format('MMMM');
-      //variabile per anno
-      var anno = moment_date.format('YYYY');
-      //nel testo inizialmente vuoto inserisco il mese e l'anno
-      $('.mese_corrente').text(mese + ' ' + anno);
-      //ciclo da 1 fino alla lunghezza del mese
-      for(var i = 1; i <= giorni; i++){
-        //giorno uguale al numero i che cicla di volta in volta e
-        var giorno = i + ' ' + mese;
-        //appendo ogni volta nelle li
-        $('.mese').append('<li>'+ giorno + '</li>')
-      }
-    }
+//     //quando clicco il bottone prev
+//   $('.prev').click(function() {
+//   //mese scende di un grado
+//     contatore_mese--;
+//     if(contatore_mese <= 12){
+//       mostra_mese();
+//     }
+//   })
+//   //quando clicco il bottone next
+//   $('.next').click(function() {
+//     //mese sale di un grado
+//     contatore_mese++;
+//     if(contatore_mese >= 1){
+//       mostra_mese();
+//     }
+//   })
+// //
+// //     //funzione per cambiare mese e mostrarlo
+// //     function mostra_mese(){
+// //       //resetto il valore del testo contennuto in mese
+// //       $('.mese').text('');
+// //       //ripeti l'operazione di prima
+// //        data ='2018-' + contatore_mese + '-1';
+// //       var moment_date = moment(data);
+// //       console.log(data);
+// //       //giorni in un mese
+// //       var giorni = moment_date.daysInMonth();
+// //       console.log(giorni);
+// //       //variabile per mese
+// //       var mese = moment_date.format('MMMM');
+// //       //variabile per anno
+// //       var anno = moment_date.format('YYYY');
+//       //nel testo inizialmente vuoto inserisco il mese e l'anno
+//       $('.mese_corrente').text(mese + ' ' + anno);
+//       //ciclo da 1 fino alla lunghezza del mese
+//       for(var i = 1; i <= giorni; i++){
+//         //giorno uguale al numero i che cicla di volta in volta e
+//         var giorno = i + ' ' + mese;
+//         //appendo ogni volta nelle li
+//         $('.mese').append('<li>'+ giorno + '</li>')
+//       }
+//     }
 })
