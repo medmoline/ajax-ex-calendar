@@ -5,31 +5,65 @@
 
 $(document).ready(function() {
 //imposto un contatore mese che parte da 1
-  var mese = 1
-  //sostituisco il valore mese nella data
-  var data ='2018-' + mese + '-1';
+  var contatore_mese = 1;
+  //sostituisco il valore contatore nella data
+  var data ='2018-' + contatore_mese + '-1';
+  //applico moment
   var moment_date = moment(data);
-  console.log(data);
-  console.log(moment_date);
   //giorni in un mese
   var giorni = moment_date.daysInMonth();
-  console.log(giorni);
   //variabile per mese
   var mese = moment_date.format('MMMM');
   //variabile per anno
   var anno = moment_date.format('YYYY');
-  console.log(mese);
-  console.log(anno);
   //nel testo inizialmente vuoto inserisco il mese e l'anno
   $('.mese_corrente').text(mese + ' ' + anno);
 
-  console.log($('.mese_corrente').text(mese + ' ' + anno));
   //ciclo da 1 fino alla lunghezza del mese
   for(var i = 1;i <= giorni; i++){
     //giorno uguale al numero i che cicla di volta in volta e
     var giorno = i + ' ' + mese;
-    //appendo ogni volta nelle li 
-    $('.calendario').append('<li>'+ giorno + '</li>')
+    //appendo ogni volta nelle li
+    $('.mese').append('<li>'+ giorno + '</li>')
   }
+  //quando clicco il bottone prev
+    $('.prev').click(function() {
+    //mese scende di un grado
+      contatore_mese--;
+      mostra_mese()
+
+    })
+    //quando clicco il bottone next
+    $('.next').click(function() {
+      //mese sale di un grado
+      contatore_mese++;
+      mostra_mese();
+    })
+
+    //funzione per cambiare mese e mostrarlo
+    function mostra_mese(){
+      //resetto il valore del testo contennuto in mese
+      $('.mese').text('');
+      //ripeti l'operazione di prima
+       data ='2018-' + contatore_mese + '-1';
+      var moment_date = moment(data);
+      console.log(data);
+      //giorni in un mese
+      var giorni = moment_date.daysInMonth();
+      console.log(giorni);
+      //variabile per mese
+      var mese = moment_date.format('MMMM');
+      //variabile per anno
+      var anno = moment_date.format('YYYY');
+      //nel testo inizialmente vuoto inserisco il mese e l'anno
+      $('.mese_corrente').text(mese + ' ' + anno);
+      //ciclo da 1 fino alla lunghezza del mese
+      for(var i = 1; i <= giorni; i++){
+        //giorno uguale al numero i che cicla di volta in volta e
+        var giorno = i + ' ' + mese;
+        //appendo ogni volta nelle li
+        $('.mese').append('<li>'+ giorno + '</li>')
+      }
+    }
 
 })
