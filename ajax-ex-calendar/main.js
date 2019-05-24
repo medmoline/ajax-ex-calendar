@@ -12,6 +12,7 @@ $(document).ready(function() {
   var moment_date = moment(data);
   //giorni in un mese
   var giorni = moment_date.daysInMonth();
+  console.log(giorni);
   //variabile per mese
   var mese = moment_date.format('MMMM');
   //variabile per anno

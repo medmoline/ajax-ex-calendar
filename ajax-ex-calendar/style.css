@@ -6,6 +6,7 @@
 
 section{
   background-color: #93cff9;
+  height: 100vh;
 }
 
 .container{
@@ -14,12 +15,20 @@ section{
   text-align: center;
 
 }
-
-
+ul::after{
+  clear:both;
+  content:'';
+  display: table;
+}
 li{
   list-style-type: none;
+  float:left;
+  border:1px solid black;
+  width:100px;
+  height:100px;
 }
 
 button{
-  padding:10px;
+  padding:20px;
+  background-color: red;
 }
